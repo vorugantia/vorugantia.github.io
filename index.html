@@ -26,10 +26,18 @@
       border-radius: 5px;
     }
   </style>
+  <script>
+    function formatDate() {
+      var today = new Date();
+      var options = { year: 'numeric', month: 'short', day: '2-digit'};
+      var formattedDate = today.toLocaleDateString('en-US', options);
+      document.getElementById('date').textContent = formattedDate;
+    }
+  </script>
 </head>
-<body>
+<body onload="formatDate()">
     <h3>TD daily performance reports<br></h3>
-  <p>Last updated: Wed 31 May 2023</p>
+  <p>Last updated: <span id="date"></span></p>
 
   <div class="category">
     <h2>Saudi</h2>
