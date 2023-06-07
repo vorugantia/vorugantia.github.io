@@ -4,16 +4,39 @@
   <title>TD daily performance reports</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Avenir:wght@400;700&display=swap');
+
     body {
       font-family: 'Avenir', sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+
+    h3 {
+      margin: 10px 0 10px; /* Updated margin values */
+      font-weight: bold;
+      font-size: 24px;
+    }
+
+    p {
+      margin: 0;
+      color: #777;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
     }
 
     .category {
-      margin-top: 20px;
+      margin-top: 30px;
+      border-top: 2px solid #ccc;
+      padding-top: 20px;
     }
 
     .category h2 {
-      margin-bottom: 5px;
+      margin: 0 0 10px;
+      font-size: 18px;
     }
 
     .button {
@@ -24,6 +47,11 @@
       color: #fff;
       text-decoration: none;
       border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .button:hover {
+      background-color: #45a049;
     }
 
     /* Responsive Styles */
@@ -43,24 +71,34 @@
   </script>
 </head>
 <body onload="formatDate()">
-    <h3>TD daily performance reports<br></h3>
-  <p>Last updated: <span id="date"></span></p>
+  <div class="container">
+    <h3>TD Daily Performance Reports</h3>
+    <p>Last updated: <span id="date"></span></p>
 
-  <div class="category">
-    <h2>Saudi</h2>
-    <a class="button" href="TD_predMS_perfsheet_SASEID-0.html">0. AVGTOP TA FR 1-10</a>
-    <a class="button" href="TD_predMS_perfsheet_SASEID-5.html">5. PERAVGAVG TA FR 1-10</a>
-    <a class="button" href="TD_predMS_perfsheet_SASEID-27.html">27. RANK TA FR 6-10</a>
-  </div>
+    <div class="category">
+      <h2>Saudi</h2>
+      <a class="button" href="TD_predMS_perfsheet_SASEID-0.html">0. AVGTOP TA FR 1-10</a>
+      <a class="button" href="TD_predMS_perfsheet_SASEID-5.html">5. PERAVGAVG TA FR 1-10</a>
+      <a class="button" href="TD_predMS_perfsheet_SASEID-27.html">27. RANK TA FR 6-10</a>
+    </div>
 
-  <div class="category">
-    <h2>Nikkei 225</h2>
-    <a class="button" href="TD_predMS_perfsheet_NKY.html">NKY</a>
-  </div>
+    <div class="category">
+      <h2>Nikkei 225</h2>
+      <a class="button" href="TD_predMS_perfsheet_NKY.html">NKY</a>
+    </div>
 
-  <div class="category">
-    <h2>Euronext 100</h2>
-    <a class="button" href="TD_predMS_perfsheet_N100.html">N100</a>
+    <div class="category">
+      <h2>Euronext 100</h2>
+      <a class="button" href="TD_predMS_perfsheet_N100.html">N100</a>
+    </div>
+
+    <div class="category">
+      <h2>SP500 NEW</h2>
+      <a class="button" href="#">AVGAVG-ALL-Strat3</a>
+      <a class="button" href="#">AVGAVG-Strat2</a>
+      <a class="button" href="#">AVGTOP-Strat1</a>
+      <a class="button" href="#">AVGTOP-T-Strat11</a>
+    </div>
   </div>
 </body>
 </html>
