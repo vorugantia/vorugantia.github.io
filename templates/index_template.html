@@ -54,12 +54,16 @@
             /* background-color: #eeeeee; */
             border-bottom: 2px groove #e5e5e5; /* Bottom border */
             border-right: 2px groove #e5e5e5; /* Right border */
-            margin-top: 10px;
+            margin-top: 6px;
             margin-bottom: 10px;
         }
 
         .graph-container .row:nth-child(2) {
             margin-top: 40px;
+        }
+
+        .graph-title {
+            margin-left: 30px;
         }
 
         @media (max-width: 1220px) {
@@ -112,25 +116,29 @@
                         <h2>S&P 500</h2>
                         <button class="btn btn-custom">View more</button>
                 </div>
-                <p style="font-size: 0.9rem;">Last predMS run: {% include 'SP500/predMSrun.html' %} </p>
+                <p style="font-size: 0.9rem;">
+                    Since: {% include 'SP500/predMSstart.html' %}
+                    <br>
+                    Last run: {% include 'SP500/predMSrun.html' %}
+                </p>
 
             </div>
 
             <!-- Table and Graph -->
             <div class="row d-flex align-items-stretch">
-                <div class="col-md-7">
+                <div class="col-md-6">
                     <!-- Table goes here -->
                     <div class="table-container"> {% include 'SP500/table.html' %} </div>
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-6">
                     <!-- Graph goes here -->
                     <div class="graph-container"> 
                         <div class="row">
-                            <h3>Outright PnL <small>(all 10% vol-scaled)</small></h3>
+                            <h3 class="graph-title">Outright PnL <small>(10% vol-scaled)</small></h3>
                             {% include 'SP500/pnl.html' %} 
                         </div>
                         <div class="row">
-                            <h3>DN PnL <small>(all 10% vol-scaled)</small></h3>
+                            <h3 class="graph-title">DN PnL <small>(10% vol-scaled)</small></h3>
                             {% include 'SP500/dnpnl.html' %} 
                         </div>
                     </div>
@@ -149,27 +157,30 @@
                         <h2>S&P 500 *NEW*</h2>
                         <button class="btn btn-custom">View more</button>
                 </div>
-                <p style="font-size: 0.9rem;">Last predMS run: {% include 'SPNEW/predMSrun.html' %} </p>
-                <br>
+                <p style="font-size: 0.9rem;">
+                    Since: {% include 'SPNEW/predMSstart.html' %}
+                    <br>
+                    Last run: {% include 'SPNEW/predMSrun.html' %}
+                </p>
                 <p>Note: this universe includes the new assets that have been added to S&P500 index over time.</p>
 
             </div>
 
             <!-- Table and Graph -->
             <div class="row d-flex align-items-stretch">
-                <div class="col-md-7">
+                <div class="col-md-6">
                     <!-- Table goes here -->
                     <div class="table-container"> {% include 'SPNEW/table.html' %} </div>
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-6">
                     <!-- Graph goes here -->
                     <div class="graph-container"> 
                         <div class="row">
-                            <h3>Outright PnL <small>(all 10% vol-scaled)</small></h3>
+                            <h3 class="graph-title">Outright PnL <small>(10% vol-scaled)</small></h3>
                             {% include 'SPNEW/pnl.html' %} 
                         </div>
                         <div class="row">
-                            <h3>DN PnL <small>(all 10% vol-scaled)</small></h3>
+                            <h3 class="graph-title">DN PnL <small>(10% vol-scaled)</small></h3>
                             {% include 'SPNEW/dnpnl.html' %} 
                         </div>
                     </div>
@@ -189,25 +200,29 @@
                         <h2>Saudi</h2>
                         <button class="btn btn-custom">View more</button>
                 </div>
-                <p style="font-size: 0.9rem;">Last predMS run: {% include 'SASEID/predMSrun.html' %} </p>
+                <p style="font-size: 0.9rem;">
+                    Since: {% include 'SASEID/predMSstart.html' %}
+                    <br>
+                    Last run: {% include 'SASEID/predMSrun.html' %}
+                </p>
 
             </div>
 
             <!-- Table and Graph -->
             <div class="row d-flex align-items-stretch">
-                <div class="col-md-7">
+                <div class="col-md-6">
                     <!-- Table goes here -->
                     <div class="table-container"> {% include 'SASEID/table.html' %} </div>
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-6">
                     <!-- Graph goes here -->
                     <div class="graph-container"> 
                         <div class="row">
-                            <h3>Outright PnL <small>(all 10% vol-scaled)</small></h3>
+                            <h3 class="graph-title">Outright PnL <small>(10% vol-scaled)</small></h3>
                             {% include 'SASEID/pnl.html' %}
                         </div>
                         <div class="row">
-                            <h3>DN PnL <small>(all 10% vol-scaled)</small></h3>
+                            <h3 class="graph-title">DN PnL <small>(10% vol-scaled)</small></h3>
                             {% include 'SASEID/dnpnl.html' %} 
                         </div>
                     </div>
@@ -227,25 +242,29 @@
                         <h2>Nikkei 225</h2>
                         <button class="btn btn-custom">View more</button>
                 </div>
-                <p style="font-size: 0.9rem;">Last predMS run: {% include 'NKY/predMSrun.html' %} </p>
+                <p style="font-size: 0.9rem;">
+                    Since: {% include 'NKY/predMSstart.html' %}
+                    <br>
+                    Last run: {% include 'NKY/predMSrun.html' %}
+                </p>
 
             </div>
 
             <!-- Table and Graph -->
             <div class="row d-flex align-items-stretch">
-                <div class="col-md-7">
+                <div class="col-md-6">
                     <!-- Table goes here -->
                     <div class="table-container"> {% include 'NKY/table.html' %} </div>
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-6">
                     <!-- Graph goes here -->
                     <div class="graph-container"> 
                         <div class="row">
-                            <h3>Outright PnL <small>(all 10% vol-scaled)</small></h3>
+                            <h3 class="graph-title">Outright PnL <small>(10% vol-scaled)</small></h3>
                             {% include 'NKY/pnl.html' %} 
                         </div>
                         <div class="row">
-                            <h3>DN PnL <small>(all 10% vol-scaled)</small></h3>
+                            <h3 class="graph-title">DN PnL <small>(10% vol-scaled)</small></h3>
                             {% include 'NKY/dnpnl.html' %} 
                         </div>
                     </div>
@@ -265,25 +284,28 @@
                         <h2>Euronext 100</h2>
                         <button class="btn btn-custom">View more</button>
                 </div>
-                <p style="font-size: 0.9rem;">Last predMS run: {% include 'N100/predMSrun.html' %} </p>
-
+                <p style="font-size: 0.9rem;">
+                    Since: {% include 'N100/predMSstart.html' %}
+                    <br>
+                    Last run: {% include 'N100/predMSrun.html' %}
+                </p>
             </div>
 
             <!-- Table and Graph -->
             <div class="row d-flex align-items-stretch">
-                <div class="col-md-7">
+                <div class="col-md-6">
                     <!-- Table goes here -->
                     <div class="table-container"> {% include 'N100/table.html' %} </div>
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-6">
                     <!-- Graph goes here -->
                     <div class="graph-container"> 
                         <div class="row">
-                            <h3>Outright PnL <small>(all 10% vol-scaled)</small></h3>
+                            <h3 class="graph-title">Outright PnL <small>(10% vol-scaled)</small></h3>
                             {% include 'N100/pnl.html' %}
                         </div>
                         <div class="row">
-                            <h3>DN PnL <small>(all 10% vol-scaled)</small></h3>
+                            <h3 class="graph-title">DN PnL <small>(10% vol-scaled)</small></h3>
                             {% include 'N100/dnpnl.html' %} 
                         </div>
                     </div>
