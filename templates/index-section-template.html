@@ -1,0 +1,42 @@
+{% macro render_section(title, backgroundColor, since_include, lastrun_include, note_text, table_include, pnl_include, dnpnl_include) %}
+    <div class="section" style="background-color:{{ backgroundColor }};">
+        <div class="section-content">
+            <!-- Title and Button -->
+            <div class="row justify-content-between align-items-center mb-4">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2>{{ title }}</h2>
+                    <button class="btn btn-custom">View more</button>
+                </div>
+                <p style="font-size: 0.9rem;">
+                    Since: {% include since_include %}
+                    <br>
+                    Last run: {% include lastrun_include %}
+                </p>
+                {% if note_text %}
+                    <p>{{ note_text }}</p>
+                {% endif %}
+            </div>
+
+            <!-- Table and Graph -->
+            <div class="row d-flex align-items-stretch">
+                <div class="col-md-6">
+                    <!-- Table goes here -->
+                    <div class="table-container"> {% include table_include %} </div>
+                </div>
+                <div class="col-md-6">
+                    <!-- Graph goes here -->
+                    <div class="graph-container">
+                        <div class="row">
+                            <h3 class="graph-title">Outright PnL <small>(10% vol-scaled)</small></h3>
+                            {% include pnl_include %}
+                        </div>
+                        <div class="row">
+                            <h3 class="graph-title">DN PnL <small>(10% vol-scaled)</small></h3>
+                            {% include dnpnl_include %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endmacro %}

@@ -8,7 +8,7 @@ env = Environment(
     loader = FileSystemLoader('templates'),
 )
 
-input_file = 'index_template.html'
+input_file = 'index-template.html'
 output_file = 'index.html'
 
 # reading the template
