@@ -1,0 +1,153 @@
+{% macro render_section(universe, title, backgroundColor, since_include, lastrun_include, note_text, table_templates, pnl_templates, dnpnl_templates) %}
+    <div class="section" style="background-color:{{ backgroundColor }};">
+        <div class="section-content">
+            <!-- Title and Button -->
+            <div class="row justify-content-between align-items-center mb-4">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2>{{ title }}</h2>
+                    <button class="btn btn-custom" disabled>View more (soon)</button>
+                </div>
+                <p style="font-size: 0.9rem;">
+                    Since: {% include since_include %}
+                    <br>
+                    Last run: {% include lastrun_include %}
+                </p>
+                {% if note_text %}
+                    <p>{{ note_text }}</p>
+                {% endif %}
+            </div>
+
+            <!-- Strategy navigation -->
+            {% if pnl_templates|length > 1 %}
+            <div class="col range-navigation">
+                    <button id="{{ universe }}-top" class="btn btn-custom top-button" onclick="goToTop('{{ universe }}')" style="visibility: hidden;">Top 5</button>
+                    <div class="nav-buttons">
+                        <button id="{{ universe }}-prev" class="btn btn-custom" onclick="navigateRange('{{ universe }}', -1)" disabled>Prev</button>
+                        <span id="{{ universe }}-range-indicator">Top 5</span>
+                        <button id="{{ universe }}-next" class="btn btn-custom" onclick="navigateRange('{{ universe }}', 1)">Next</button>
+                    </div>
+            </div>
+            {% endif %}
+
+            <!-- Table/graph filters and toggles -->
+            <!-- <div class="col d-flex justify-content-end">
+            </div> -->
+            
+
+            <!-- Table and Graph -->
+            <div class="row d-flex align-items-stretch">
+                <div class="col-md-6">
+                    <!-- Table goes here -->
+                    <div class="table-container">
+                        {% for tmp in table_templates %}
+                            <div id="{{ universe }}-table-{{ tmp.filename }}" data-table>
+                                <!-- {% include tmp.path %} -->
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <!-- Graph goes here -->
+                    <div class="graph-container">
+                        <div class="row">
+                            <h3 class="graph-title">Outright PnL <small>(10% vol-scaled)</small></h3>
+                            {% for tmp in pnl_templates %}
+                            <div id="{{ universe }}-pnl-{{ tmp.filename }}" data-pnl>
+                                <!--{% include tmp.path %}-->
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <div class="row">
+                            <div class="col d-flex justify-content-between">
+                                <h3 class="graph-title">DN PnL <small>(10% vol-scaled)</small></h3>
+                                <div class="dropdown">
+                                    <button type="button" class="btn btn-custom dropdown-toggle" id='dnMode' data-bs-toggle="dropdown" aria-expanded="false">
+                                        DN mode
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dnMode">
+                                        <li><a class='dropdown-item selected-item' href='#' onclick="toggleDNMode('{{ universe }}', 'index')">index</a></li>
+                                        <li><a class='dropdown-item' href='#' onclick="toggleDNMode('{{ universe }}', 'synth')">synth. bench</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+    
+                            {% for tmp in dnpnl_templates %}
+                            <div id="{{ universe }}-dnpnl-{{ tmp.filename }}" data-dnpnl>
+                                <!--{% include tmp.path %}-->
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        universes['{{ universe }}'] = {
+            currentDNMode: 'index',
+            currentIndex: 0,
+            pnlLookup: {{ pnl_templates|tojson }},
+            dnpnlLookup: {{ dnpnl_templates|tojson }},
+            tableLookup: {{ table_templates|tojson }}
+        };
+        
+        function getCurrentTemplate(univ, templates, benchAttr) {
+            const currentIndex = universes[univ].currentIndex;
+            const currentDNMode = universes[univ].currentDNMode;
+            for (const template of templates) {
+                if (benchAttr == true) {
+                    if (template.benchtype == currentDNMode && template.index == currentIndex) {
+                        return template;
+                    }
+                } else {
+                    if (template.index == currentIndex) {
+                        return template;
+                    }
+                }
+            }
+            console.log('cant find current template.');
+            return null;
+        }
+        
+        function getComment(node) {
+            while(node && node.nodeType !== 8) {
+                node = node.nextSibling;
+            }
+            return node;
+        }
+
+        function show(univ, prefix, component) {
+            var templates = document.querySelectorAll('div[id^="' + univ + '-' + prefix + '-"]');
+            targetID = univ + '-' + prefix + '-' + component.filename;
+            target = null;
+
+            templates.forEach(template => {
+                if(template.id == targetID) {
+                    target = template;
+                }
+            });
+
+            if(target == null) {
+                console.log("error: cannot find template ", component);
+            }
+            else {
+                const s = getComment(target.childNodes[0]).nodeValue.trim();
+                $(target).append($(s));
+            }
+        }
+
+        function showTemplates(univ) {
+            const {tableLookup, pnlLookup, dnpnlLookup} = universes[univ];
+            show(univ, 'table', getCurrentTemplate(univ, tableLookup, true));
+            show(univ, 'pnl', getCurrentTemplate(univ, pnlLookup, false));
+            show(univ, 'dnpnl', getCurrentTemplate(univ, dnpnlLookup, true));
+        }
+
+        showTemplates('{{ universe }}');
+
+    </script>
+
+    <script src="js/universe-functions.js"></script>    
+
+{% endmacro %}
