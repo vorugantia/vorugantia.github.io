@@ -1,0 +1,3 @@
+{% from "universe-template.html" import render_section %}
+
+{{ render_section(universe="SPNEW", title="S&P 500 *NEW*", backgroundColor="#eeeeee", since_include="SPNEW/predMSstart.html", lastrun_include="SPNEW/predMSrun.html", note_text="Note: this universe includes the new assets that have been added to S&P500 index over time.", table_templates=table_templates, pnl_templates=pnl_templates, dnpnl_templates=dnpnl_templates) }}
